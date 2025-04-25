@@ -42,3 +42,11 @@ sudo apt install -y build-essential git wget subversion \
 libxml2-dev libncurses5-dev libnewt-dev libssl-dev \
 libsqlite3-dev libjansson-dev libsqlite3-dev uuid-dev
 
+wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18-current.tar.gz
+tar -xvzf asterisk-18-current.tar.gz
+cd asterisk-18.*
+sudo make menuselect
+sudo make
+sudo make install
+sudo make samples
+sudo make config
